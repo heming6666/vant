@@ -15,6 +15,7 @@ export type SubmitBarProps = {
   tipIcon?: string;
   label?: string;
   price?: number;
+  priceOld?: number;
   loading?: boolean;
   currency: string;
   disabled?: boolean;
@@ -40,22 +41,29 @@ function SubmitBar(
   slots: SubmitBarSlots,
   ctx: RenderContext<SubmitBarProps>
 ) {
-  const { tip, price, tipIcon } = props;
+  const { tip, price, priceOld, tipIcon } = props;
 
   function Text() {
-    if (typeof price === 'number') {
+    if (typeof price === 'number' && typeof priceOld === 'number') {
       const priceArr = (price / 100).toFixed(props.decimalLength).split('.');
-      const decimalStr = props.decimalLength ? `.${priceArr[1]}` : '';
+      // const decimalStr = props.decimalLength ? `.${priceArr[1]}` : '';
+      const priceOldArr = (priceOld / 100).toFixed(props.decimalLength).split('.');
       return (
         <div
           style={{ textAlign: props.textAlign ? props.textAlign : '' }}
           class={bem('text')}
         >
-          <span>{props.label || t('label')}</span>
+          {/* <span>{props.label || t('label')}</span> */}
           <span class={bem('price')}>
-            {props.currency}
+            <span class={bem('price', 'currency')}>{props.currency}</span>
             <span class={bem('price', 'integer')}>{priceArr[0]}</span>
-            {decimalStr}
+            {/* {decimalStr} */}
+          </span>
+          <span class={bem('price-old')}>
+          <span class={bem('price-old', 'prefix')}>原价</span>
+            <span class={bem('price-old', 'currency')}>{props.currency}</span>
+            <span class={bem('price-old', 'integer')}>{priceOldArr[0]}</span>
+            {/* {decimalStr} */}
           </span>
           {props.suffixLabel && (
             <span class={bem('suffix-label')}>{props.suffixLabel}</span>
@@ -105,6 +113,7 @@ SubmitBar.props = {
   tip: String,
   label: String,
   price: Number,
+  priceOld: Number,
   tipIcon: String,
   loading: Boolean,
   disabled: Boolean,
@@ -126,7 +135,7 @@ SubmitBar.props = {
   },
   buttonType: {
     type: String,
-    default: 'danger',
+    default: 'info',
   },
 };
 

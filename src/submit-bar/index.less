@@ -55,13 +55,45 @@
   }
 
   &__price {
-    color: @submit-bar-price-color;
-    font-weight: @font-weight-bold;
-    font-size: @font-size-sm;
-
-    &--integer {
+    float: left;
+    color: #CE1B23;
+    font-weight: 600;
+    font-size: @submit-bar-price-integer-font-size;
+  
+    &--currency {
       font-size: @submit-bar-price-integer-font-size;
       font-family: @submit-bar-price-font-family;
+    }
+
+    &--integer {
+      margin-left: 10px;
+      font-size: @submit-bar-price-integer-font-size;
+      font-family: @submit-bar-price-font-family;
+    }
+  }
+
+  &__price-old {
+    float: left;
+    color: #787777;
+    font-size: @font-size-sm;
+  
+    &--prefix {
+      margin-top: 5px;
+      margin-left: 15px;
+      font-family: @submit-bar-price-font-family;
+    }
+
+    &--currency {
+      margin-top: 8px;
+      margin-left: 5px;
+      font-family: @submit-bar-price-font-family;
+    }
+
+    &--integer {
+      margin-top: 8px;
+      margin-left: 5px;
+      font-family: @submit-bar-price-font-family;
+      text-decoration:line-through;
     }
   }
 
@@ -71,8 +103,9 @@
     font-weight: @font-weight-bold;
     border: none;
 
-    &--danger {
-      background: @goods-action-button-danger-color;
+    &--info {
+      background: #25579F;
+      border-radius:5px;
     }
   }
 

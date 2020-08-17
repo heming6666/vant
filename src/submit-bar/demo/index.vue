@@ -3,6 +3,7 @@
     <demo-block :title="t('basicUsage')">
       <van-submit-bar
         :price="3050"
+        :price-old = "6000"
         :button-text="t('submit')"
         @submit="onClickButton"
       />
